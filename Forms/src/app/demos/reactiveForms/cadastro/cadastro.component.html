@@ -12,7 +12,16 @@
                         type="text"
                         placeholder="Nome (requerido)"
                         formControlName="nome"
+                        [ngClass]="{
+                            'is-invalid': cadastroForm.get('nome').errors && (cadastroForm.get('nome').dirty || cadastroForm.get('nome').touched)
+                        }"
                     />
+                    <span
+                        class="text-danger"
+                        *ngIf="cadastroForm.get('nome').errors && (cadastroForm.get('nome').dirty || cadastroForm.get('nome').touched)"
+                    >
+                        <p>Preencha o campo nome</p>
+                    </span>
                 </div>
             </div>
             <div class="form-group">
@@ -36,7 +45,22 @@
                         type="text"
                         placeholder="E-mail (requerido)"
                         formControlName="email"
+                        [ngClass]="{
+                            'is-invalid': cadastroForm.get('email').errors && (cadastroForm.get('email').dirty || cadastroForm.get('email').touched)
+                        }"
                     />
+                    <span
+                        class="text-danger"
+                        *ngIf="cadastroForm.get('email').errors?.required && (cadastroForm.get('email').dirty || cadastroForm.get('email').touched)"
+                    >
+                        <p>Preencha o campo nome</p>
+                    </span>
+                    <span
+                        class="text-danger"
+                        *ngIf="cadastroForm.get('email').errors?.email && (cadastroForm.get('email').dirty || cadastroForm.get('email').touched)"
+                    >
+                        <p>E-mail em formato inválido</p>
+                    </span>
                 </div>
             </div>
             <div class="form-group">
@@ -66,8 +90,23 @@
             <div class="form-group">
                 <div class="col-md-4 col-md-offset-2">
                     <span>
-                        <button class="btn btn-success" id="Registrar" type="submit">Registrar</button>
+                        <button
+                            class="btn btn-success"
+                            id="Registrar"
+                            type="submit"
+                            [disabled]="!cadastroForm.valid"
+                        >
+                            Registrar
+                        </button>
                     </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-2">
+                    <p>Formulário válido: {{ cadastroForm.valid }}</p>
+                    <p>Formulário Tocado: {{ cadastroForm.touched }}</p>
+                    <p>Formulário Sujo: {{ cadastroForm.dirty }}</p>
+                    <p>Formulário: {{ formResult }}</p>
                 </div>
             </div>
         </div>
