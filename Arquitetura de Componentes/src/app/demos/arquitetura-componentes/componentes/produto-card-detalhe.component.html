@@ -24,8 +24,11 @@
         </div>
 
         <div class="card-footer">
-            <a class="btn btn-success" href="javascript:void(0)">
-                Botão
+            <a [ngClass]="produto.ativo ? 'btn btn-success' : 'btn btn-danger'" (click)="emitirEvento()" href="javascript:void(0)">
+                <span>
+                    <span [ngClass]="produto.ativo ? 'fa fa-toggle-on' : 'fa fa-toggle-off'"></span>
+                    Status
+                </span>
             </a>
         </div>
     </div>
