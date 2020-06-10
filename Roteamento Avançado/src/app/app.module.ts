@@ -28,9 +28,7 @@ import { AppRoutingModule } from './app.routes';
     CustomFormsModule,
     AppRoutingModule
   ],
-  providers: [
-    {provide: APP_BASE_HREF, useValue: '/'}
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
