@@ -23,6 +23,8 @@ export class CadastroComponent implements OnInit, AfterViewInit {
   genericValidator: GenericValidator;
   displayMessage: DisplayMessage = {};
 
+  mudancasNaoSalvas: boolean;
+
   constructor(private fb: FormBuilder) {
     this.validationMessages = {
       nome: {
@@ -81,6 +83,7 @@ export class CadastroComponent implements OnInit, AfterViewInit {
 
     merge(...controlBlurs).subscribe(() => {
       this.displayMessage = this.genericValidator.processarMensagens(this.cadastroForm);
+      this.mudancasNaoSalvas = true;
     });
   }
 
@@ -88,6 +91,8 @@ export class CadastroComponent implements OnInit, AfterViewInit {
     if (this.cadastroForm.dirty && this.cadastroForm.valid) {
       this.usuario = Object.assign({}, this.usuario, this.cadastroForm.value);
       this.formResult = JSON.stringify(this.cadastroForm.value);
+
+      this.mudancasNaoSalvas = false;
     } else {
       this.formResult = 'Não submeteu!!!';
     }
