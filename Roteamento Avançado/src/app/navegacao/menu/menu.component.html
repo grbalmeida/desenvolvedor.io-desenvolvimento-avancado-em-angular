@@ -12,7 +12,17 @@
       </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+                <li *ngFor="let item of nav;" class="nav-item">
+                    <a
+                        class="nav-link"
+                        [routerLink]="item.link"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: item.exact }"
+                    >
+                        {{ item.name }}
+                    </a>
+                </li>
+                <!-- <li class="nav-item">
                     <a
                         class="nav-link"
                         [routerLinkActiveOptions]="{ exact: true }"
@@ -51,7 +61,7 @@
                     >
                         Produtos
                     </a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>
