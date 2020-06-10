@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
@@ -12,6 +11,7 @@ import { ProdutoDetalheComponent } from './componentes/produto-card-detalhe.comp
 import { ProdutoCountComponent } from './componentes/produto-count.component';
 import { EditarProdutoComponent } from './editar-produto/editar-produto.component';
 import { ProdutoAppComponent } from './produto.app.component';
+import { ProdutoService } from './services/produto.service';
 
 @NgModule({
     declarations: [
@@ -24,6 +24,9 @@ import { ProdutoAppComponent } from './produto.app.component';
     imports: [
         CommonModule,
         ProdutoRoutingModule
+    ],
+    providers: [
+        ProdutoService
     ],
     exports: []
 })
