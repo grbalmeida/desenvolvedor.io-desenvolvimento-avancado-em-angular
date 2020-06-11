@@ -11,7 +11,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let filme of filmes;">
+            <tr *ngFor="let filme of mapped;">
                 <img [src]="filme.imagem" style="padding-bottom: 5px;">
                 <td>{{ filme.nome | titlecase }}</td>
                 <td>{{ filme.dataLancamento | date:'dd/MM/yyyy' }}</td>

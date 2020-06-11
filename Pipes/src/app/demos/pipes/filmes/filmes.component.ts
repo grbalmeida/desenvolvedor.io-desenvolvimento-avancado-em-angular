@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Filme } from './filme';
+import { ImageFormaterPipe } from '../image.pipe';
 
 @Component({
   selector: 'app-filmes',
   templateUrl: './filmes.component.html',
-  styles: [
+  providers: [
+    ImageFormaterPipe
   ]
 })
 export class FilmesComponent implements OnInit {
-
   filmes: Filme[];
+  mapped: Filme[];
+
+  constructor(private imageFormat: ImageFormaterPipe) { }
 
   ngOnInit() {
     this.filmes = [
@@ -45,10 +49,15 @@ export class FilmesComponent implements OnInit {
         nome: 'Pulp Fiction: Tempo de Violência',
         dataLancamento: new Date('01/08/1994'),
         valor: 190.00,
-        imagem: 'PulpFiction.jpg',
+        imagem: '',
         tamanho: '773039680'
       }
     ];
+
+    this.mapped = this.filmes.map(filme => ({
+      ...filme,
+      imagem: this.imageFormat.transform(filme.imagem, 'default', true)
+    }));
   }
 
 }
