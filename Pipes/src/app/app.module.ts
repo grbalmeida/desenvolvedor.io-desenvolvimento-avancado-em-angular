@@ -17,13 +17,15 @@ import { AppRoutingModule } from './app.routes';
 import { AuthGuard } from './services/app.guard';
 import { CadastroGuard } from './services/cadastro.guard';
 import { FilmesComponent } from './demos/pipes/filmes/filmes.component';
+import { FileSizePipe } from './demos/pipes/filmes/filesize.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     SobreComponent,
     CadastroComponent,
-    FilmesComponent
+    FilmesComponent,
+    FileSizePipe
   ],
   imports: [
     BrowserModule,

@@ -16,7 +16,7 @@
                 <td>{{ filme.nome | titlecase }}</td>
                 <td>{{ filme.dataLancamento | date:'dd/MM/yyyy' }}</td>
                 <td>{{ filme.valor | currency:'BRL':'symbol':'1.2-2':'pt' }}</td>
-                <td>{{ filme.tamanho }}</td>
+                <td>{{ filme.tamanho | filesize }}</td>
             </tr>
         </tbody>
     </table>
