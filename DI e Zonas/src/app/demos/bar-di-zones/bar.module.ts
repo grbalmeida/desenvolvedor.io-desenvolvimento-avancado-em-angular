@@ -2,10 +2,12 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BarComponent } from './bar.component';
 import { BarUnidadeConfig, BAR_UNIDADE_CONFIG } from './bar.config';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        HttpClientModule
     ],
     declarations: [
         BarComponent
