@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class BarServices {
-    constructor(private http: HttpClient) { }
+    constructor() { }
 
     obterBebidas(): string {
         return 'Bebidas';
