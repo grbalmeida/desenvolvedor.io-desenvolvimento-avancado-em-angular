@@ -12,12 +12,16 @@ import { map } from 'rxjs/operators';
 export class TasksIniciadasComponent implements OnInit {
   iniciados$: Observable<any[]>;
 
-  constructor(private store: Store) {}
+  constructor(private tasksService: TasksService, private store: Store) {}
 
   ngOnInit() {
     this.iniciados$ = this.store.getTodoList()
       .pipe(
         map(todolist => todolist.filter(task => task.iniciado && !task.finalizado))
       );
+  }
+
+  onToggle(event: any) {
+    this.tasksService.toggle(event);
   }
 }
