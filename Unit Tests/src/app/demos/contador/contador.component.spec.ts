@@ -70,6 +70,19 @@ describe('ContadorComponent', () => {
         expect(component.valor).toBe(80);
     });
 
+    it('Deve manter o valor inalterado caso o código da tecla seja diferente de tecla para baixo ou para cima', () => {
+        component.incrementar();
+        expect(component.valor).toBe(1);
+
+        let keyEvent = new KeyboardEvent('keyup', { code: 'ArrowLeft' });
+        component.onKeyUp(keyEvent);
+        expect(component.valor).toBe(1);
+
+        keyEvent = new KeyboardEvent('keyup', { code: 'Space' });
+        component.onKeyUp(keyEvent);
+        expect(component.valor).toBe(1);
+    });
+
     it('Deve colocar o foco no componente', () => {
         expect(component.foco).toBeFalsy();
 
