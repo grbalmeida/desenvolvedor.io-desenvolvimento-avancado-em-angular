@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { Produto } from '../models/produto';
 
 @Injectable()
@@ -64,6 +64,6 @@ export class ProdutoService {
   }
 
   obterPorId(id: number): Produto {
-    return this.produtos.find(produto => produto.id == id);
+    return this.produtos.find(produto => produto.id === id);
   }
 }

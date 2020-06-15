@@ -56,7 +56,7 @@ export class FilmesComponent implements OnInit {
 
     this.mapped = this.filmes.map(filme => ({
       ...filme,
-      imagem: this.imageFormat.transform(filme.imagem, 'default', true)
+      imagem: this.imageFormat.transform(filme.imagem, true, 'default')
     }));
   }
 

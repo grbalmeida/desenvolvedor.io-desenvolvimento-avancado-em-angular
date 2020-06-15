@@ -6,13 +6,13 @@ export interface State {
     todolist: Task[];
 }
 
-const state: State = {
+const initialState: State = {
     todolist: []
 };
 
 export class Store {
     // propagador do estado atual da store (value)
-    private subject = new BehaviorSubject<State>(state);
+    private subject = new BehaviorSubject<State>(initialState);
     private store = this.subject.asObservable();
 
     get value() {
@@ -21,7 +21,7 @@ export class Store {
 
     public getTodoList(): Observable<Task[]> {
         return this.store
-            .pipe(map(store => store.todolist))
+            .pipe(map(store => store.todolist));
     }
 
     set(name: string, state: any) {

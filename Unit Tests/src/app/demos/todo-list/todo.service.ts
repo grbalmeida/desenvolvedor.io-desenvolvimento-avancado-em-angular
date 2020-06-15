@@ -21,7 +21,7 @@ export class TasksService {
       .put(`http://localhost:3000/todolist/${event.task.id}`, event.task)
       .subscribe(() => {
         const value = this.store.value.todolist;
-        
+
         const todolist = value.map(task => {
           if (event.task.id === task.id) {
             return { ...task, ...event };
