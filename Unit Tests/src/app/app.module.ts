@@ -22,6 +22,7 @@ import { ImageFormaterPipe } from './demos/pipes/image.pipe';
 import { BarModule } from './demos/bar-di-zones/bar.module';
 import { BarServices } from './demos/bar-di-zones/bar.service';
 import { TodoModule } from './demos/todo-list/todo.module';
+import { ContadorComponent } from './demos/contador/contator.component';
 
 export const BAR_PROVIDERS: Provider[] = [
   BarServices
@@ -33,6 +34,7 @@ export const BAR_PROVIDERS: Provider[] = [
     SobreComponent,
     CadastroComponent,
     FilmesComponent,
+    ContadorComponent,
     FileSizePipe,
     ImageFormaterPipe
   ],
@@ -54,7 +56,7 @@ export const BAR_PROVIDERS: Provider[] = [
   providers: [
     AuthGuard,
     CadastroGuard,
-    //BAR_PROVIDERS
+    // BAR_PROVIDERS
   ],
   bootstrap: [AppComponent]
 })
