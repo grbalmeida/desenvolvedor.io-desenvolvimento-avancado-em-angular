@@ -1,4 +1,4 @@
-import { browser, by, element } from 'protractor';
+import { by, element } from 'protractor';
 import { AppBasePage } from '../app.base.po';
 
 export class AppCadastroPage extends AppBasePage {
