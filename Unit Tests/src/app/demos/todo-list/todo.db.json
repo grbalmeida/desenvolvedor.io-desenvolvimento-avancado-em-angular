@@ -3,134 +3,26 @@
     {
       "id": 1,
       "nome": "Responder e-mails",
-      "finalizado": false,
       "iniciado": false,
-      "task": {
-        "id": 1,
-        "nome": "Responder e-mails",
-        "finalizado": false,
-        "iniciado": true,
-        "task": {
-          "id": 1,
-          "nome": "Responder e-mails",
-          "finalizado": true,
-          "iniciado": false,
-          "task": {
-            "id": 1,
-            "nome": "Responder e-mails",
-            "finalizado": false,
-            "iniciado": true,
-            "task": {
-              "id": 1,
-              "nome": "Responder e-mails",
-              "finalizado": false,
-              "iniciado": true,
-              "task": {
-                "id": 1,
-                "nome": "Responder e-mails",
-                "finalizado": true,
-                "iniciado": false,
-                "task": {
-                  "id": 1,
-                  "nome": "Responder e-mails",
-                  "finalizado": false,
-                  "iniciado": true,
-                  "task": {
-                    "id": 1,
-                    "nome": "Responder e-mails",
-                    "finalizado": false,
-                    "iniciado": true,
-                    "task": {
-                      "id": 1,
-                      "nome": "Responder e-mails",
-                      "finalizado": true,
-                      "iniciado": false,
-                      "task": {
-                        "id": 1,
-                        "nome": "Responder e-mails",
-                        "finalizado": false,
-                        "iniciado": true,
-                        "task": {
-                          "id": 1,
-                          "nome": "Responder e-mails",
-                          "finalizado": false,
-                          "iniciado": true,
-                          "task": {
-                            "id": 1,
-                            "nome": "Responder e-mails",
-                            "finalizado": true,
-                            "iniciado": false,
-                            "task": {
-                              "id": 1,
-                              "nome": "Responder e-mails",
-                              "finalizado": false,
-                              "iniciado": true
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+      "finalizado": false
     },
     {
       "id": 2,
       "nome": "Reunião com fornecedor",
       "finalizado": false,
-      "iniciado": false,
-      "task": {
-        "id": 2,
-        "nome": "Reunião com fornecedor",
-        "finalizado": false,
-        "iniciado": true
-      }
+      "iniciado": false
     },
     {
       "id": 3,
       "nome": "Finalizar curso de Angular",
       "finalizado": false,
-      "iniciado": false,
-      "task": {
-        "id": 3,
-        "nome": "Finalizar curso de Angular",
-        "finalizado": false,
-        "iniciado": false
-      }
+      "iniciado": false
     },
     {
       "id": 4,
       "nome": "Publicar feedback no LinkedIn",
       "finalizado": false,
-      "iniciado": false,
-      "task": {
-        "id": 4,
-        "nome": "Publicar feedback no LinkedIn",
-        "finalizado": false,
-        "iniciado": true,
-        "task": {
-          "id": 4,
-          "nome": "Publicar feedback no LinkedIn",
-          "finalizado": false,
-          "iniciado": true,
-          "task": {
-            "id": 4,
-            "nome": "Publicar feedback no LinkedIn",
-            "finalizado": false,
-            "iniciado": false,
-            "task": {
-              "id": 4,
-              "nome": "Publicar feedback no LinkedIn",
-              "finalizado": false,
-              "iniciado": true
-            }
-          }
-        }
-      }
+      "iniciado": false
     },
     {
       "id": 5,
@@ -148,37 +40,13 @@
       "id": 7,
       "nome": "Comprar Café",
       "finalizado": false,
-      "iniciado": false,
-      "task": {
-        "id": 7,
-        "nome": "Comprar Café",
-        "finalizado": false,
-        "iniciado": true
-      }
+      "iniciado": false
     },
     {
       "id": 8,
       "nome": "Visitar desenvolvedor.io",
       "finalizado": false,
-      "iniciado": false,
-      "task": {
-        "id": 8,
-        "nome": "Visitar desenvolvedor.io",
-        "finalizado": false,
-        "iniciado": true,
-        "task": {
-          "id": 8,
-          "nome": "Visitar desenvolvedor.io",
-          "finalizado": false,
-          "iniciado": true,
-          "task": {
-            "id": 8,
-            "nome": "Visitar desenvolvedor.io",
-            "finalizado": false,
-            "iniciado": false
-          }
-        }
-      }
+      "iniciado": false
     }
   ]
 }
