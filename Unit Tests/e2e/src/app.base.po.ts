@@ -1,6 +1,7 @@
 import { browser, by, element, ExpectedConditions } from 'protractor';
 
 export abstract class AppBasePage {
+
     constructor() {
         browser.driver.manage().window().maximize();
     }
@@ -23,7 +24,7 @@ export abstract class AppBasePage {
         return element(by.xpath(xpath));
     }
 
-    esperar = (milissegundos: number) => {
-        browser.sleep(milissegundos);
+    esperar = (milisegundos: number) => {
+        browser.sleep(milisegundos);
     }
 }

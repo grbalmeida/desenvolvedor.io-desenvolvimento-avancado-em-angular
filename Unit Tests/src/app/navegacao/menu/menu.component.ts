@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './menu.component.html'
 })
 export class MenuComponent {
+
   nav: Nav[] = [
     {
       link: '/home',
@@ -33,39 +34,42 @@ export class MenuComponent {
     {
       link: '/filmes',
       name: 'Filmes',
-      exact: true,
+      exact: false,
       admin: false
     },
     {
       link: '/bar',
       name: 'Bar',
-      exact: true,
+      exact: false,
       admin: false
     },
     {
       link: '/todo',
       name: 'To Do',
-      exact: true,
+      exact: false,
       admin: false
     },
     {
       link: '/contador',
       name: 'Contador',
-      exact: true,
-      admin: false,
+      exact: false,
+      admin: false
     },
     {
       link: '/admin',
       name: 'Admin',
-      exact: true,
-      admin: true
+      exact: false,
+      admin: false
     }
   ];
+
 }
 
+
+
 interface Nav {
-  link: string;
-  name: string;
-  exact: boolean;
-  admin: boolean;
+  link: string,
+  name: string,
+  exact: boolean,
+  admin: boolean
 }

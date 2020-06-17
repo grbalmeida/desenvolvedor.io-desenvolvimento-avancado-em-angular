@@ -16,7 +16,7 @@ export class CadastroComponent implements OnInit, AfterViewInit {
 
   cadastroForm: FormGroup;
   usuario: Usuario;
-  formResult: string = '';
+  formResult = '';
   MASKS = utilsBr.MASKS;
 
   validationMessages: ValidationMessages;
