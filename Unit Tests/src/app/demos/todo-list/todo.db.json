@@ -4,7 +4,79 @@
       "id": 1,
       "nome": "Responder e-mails",
       "finalizado": false,
-      "iniciado": true
+      "iniciado": false,
+      "task": {
+        "id": 1,
+        "nome": "Responder e-mails",
+        "finalizado": false,
+        "iniciado": true,
+        "task": {
+          "id": 1,
+          "nome": "Responder e-mails",
+          "finalizado": true,
+          "iniciado": false,
+          "task": {
+            "id": 1,
+            "nome": "Responder e-mails",
+            "finalizado": false,
+            "iniciado": true,
+            "task": {
+              "id": 1,
+              "nome": "Responder e-mails",
+              "finalizado": false,
+              "iniciado": true,
+              "task": {
+                "id": 1,
+                "nome": "Responder e-mails",
+                "finalizado": true,
+                "iniciado": false,
+                "task": {
+                  "id": 1,
+                  "nome": "Responder e-mails",
+                  "finalizado": false,
+                  "iniciado": true,
+                  "task": {
+                    "id": 1,
+                    "nome": "Responder e-mails",
+                    "finalizado": false,
+                    "iniciado": true,
+                    "task": {
+                      "id": 1,
+                      "nome": "Responder e-mails",
+                      "finalizado": true,
+                      "iniciado": false,
+                      "task": {
+                        "id": 1,
+                        "nome": "Responder e-mails",
+                        "finalizado": false,
+                        "iniciado": true,
+                        "task": {
+                          "id": 1,
+                          "nome": "Responder e-mails",
+                          "finalizado": false,
+                          "iniciado": true,
+                          "task": {
+                            "id": 1,
+                            "nome": "Responder e-mails",
+                            "finalizado": true,
+                            "iniciado": false,
+                            "task": {
+                              "id": 1,
+                              "nome": "Responder e-mails",
+                              "finalizado": false,
+                              "iniciado": true
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     },
     {
       "id": 2,
@@ -22,7 +94,7 @@
       "id": 3,
       "nome": "Finalizar curso de Angular",
       "finalizado": false,
-      "iniciado": true,
+      "iniciado": false,
       "task": {
         "id": 3,
         "nome": "Finalizar curso de Angular",
@@ -33,7 +105,7 @@
     {
       "id": 4,
       "nome": "Publicar feedback no LinkedIn",
-      "finalizado": true,
+      "finalizado": false,
       "iniciado": false,
       "task": {
         "id": 4,
@@ -44,12 +116,18 @@
           "id": 4,
           "nome": "Publicar feedback no LinkedIn",
           "finalizado": false,
-          "iniciado": false,
+          "iniciado": true,
           "task": {
             "id": 4,
             "nome": "Publicar feedback no LinkedIn",
             "finalizado": false,
-            "iniciado": true
+            "iniciado": false,
+            "task": {
+              "id": 4,
+              "nome": "Publicar feedback no LinkedIn",
+              "finalizado": false,
+              "iniciado": true
+            }
           }
         }
       }
@@ -81,7 +159,7 @@
     {
       "id": 8,
       "nome": "Visitar desenvolvedor.io",
-      "finalizado": true,
+      "finalizado": false,
       "iniciado": false,
       "task": {
         "id": 8,
@@ -92,7 +170,13 @@
           "id": 8,
           "nome": "Visitar desenvolvedor.io",
           "finalizado": false,
-          "iniciado": false
+          "iniciado": true,
+          "task": {
+            "id": 8,
+            "nome": "Visitar desenvolvedor.io",
+            "finalizado": false,
+            "iniciado": false
+          }
         }
       }
     }

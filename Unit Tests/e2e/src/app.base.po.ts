@@ -24,7 +24,7 @@ export abstract class AppBasePage {
         return element(by.xpath(xpath));
     }
 
-    esperar = (milisegundos: number) => {
+    esperar = (milisegundos: number = 1000) => {
         browser.sleep(milisegundos);
     }
 }

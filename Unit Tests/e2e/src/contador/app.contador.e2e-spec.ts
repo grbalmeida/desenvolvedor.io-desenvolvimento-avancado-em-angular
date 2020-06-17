@@ -1,7 +1,7 @@
-import { logging, browser, protractor } from 'protractor';
+import { logging, browser } from 'protractor';
 import { AppContadorPage } from './app.contador.po';
 
-describe('Testes do formulário de cadastro', () => {
+describe('Testes do contador', () => {
     let page: AppContadorPage;
 
     beforeEach(() => {

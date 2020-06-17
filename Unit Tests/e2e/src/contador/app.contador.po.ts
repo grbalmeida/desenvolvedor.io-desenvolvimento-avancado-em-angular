@@ -1,4 +1,5 @@
 import { AppBasePage } from '../app.base.po';
+
 export class AppContadorPage extends AppBasePage {
     constructor() {
         super();
