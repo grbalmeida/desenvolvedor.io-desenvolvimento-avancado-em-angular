@@ -8,6 +8,11 @@ describe('Testes do formulário de cadastro', () => {
         page = new AppCadastroPage();
     });
 
+    it('Deve navegar até formulário de cadastro', () => {
+        page.iniciarNavegacao();
+        expect(page.obterTituloCadastro()).toEqual('Demo Cadastro');
+    });
+
     afterEach(async () => {
         // Assert that there are no errors emitted from the browser
 
