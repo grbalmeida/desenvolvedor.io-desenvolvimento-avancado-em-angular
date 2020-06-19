@@ -4,10 +4,13 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { CustomFormsModule } from 'ngx-custom-validators';
+
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { LoginComponent } from './login/login.component';
 import { ContaRoutingModule } from './conta.route';
 import { ContaAppComponent } from './conta.app.component';
+import { ContaService } from './services/conta.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,11 @@ import { ContaAppComponent } from './conta.app.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ContaRoutingModule
+    ContaRoutingModule,
+    CustomFormsModule
+  ],
+  providers: [
+    ContaService
   ]
 })
 export class ContaModule { }
