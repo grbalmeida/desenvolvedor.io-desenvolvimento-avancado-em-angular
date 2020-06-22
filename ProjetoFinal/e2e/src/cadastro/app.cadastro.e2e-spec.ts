@@ -1,5 +1,7 @@
-import { AppCadastroPage } from './app.cadastro.po';
 import { browser, logging } from 'protractor';
+import * as faker from 'faker';
+
+import { AppCadastroPage } from './app.cadastro.po';
 
 describe('Testes do formulário de cadastro', () => {
   let page: AppCadastroPage;
@@ -18,9 +20,11 @@ describe('Testes do formulário de cadastro', () => {
   it('Deve preencher formulário de cadastro com sucesso', () => {
     page.iniciarNavegacao();
 
-    page.campoEmail.sendKeys('teste@teste');
-    page.campoSenha.sendKeys('Teste123');
-    page.campoSenhaConfirmacao.sendKeys('Teste123');
+    const senha = faker.internet.password(8);
+
+    page.campoEmail.sendKeys(faker.internet.email());
+    page.campoSenha.sendKeys(senha);
+    page.campoSenhaConfirmacao.sendKeys(senha);
     page.campoEmail.click();
 
     expect(page.botaoRegistrar.getAttribute('disabled')).toBeFalsy();
@@ -59,7 +63,7 @@ describe('Testes do formulário de cadastro', () => {
   it('Deve validar se a senha tem pelo menos 6 caracteres', () => {
     page.iniciarNavegacao();
 
-    page.campoSenha.sendKeys('12345');
+    page.campoSenha.sendKeys(faker.internet.password(5));
     page.campoSenhaConfirmacao.click();
 
     expect(page.obterErroCampoSenha()).toContain('A senha deve possuir entre 6 e 15 caracteres');
@@ -69,7 +73,7 @@ describe('Testes do formulário de cadastro', () => {
   it('Deve validar se a senha tem no máximo 15 caracteres', () => {
     page.iniciarNavegacao();
 
-    page.campoSenha.sendKeys(''.padEnd(16, 'A'));
+    page.campoSenha.sendKeys(faker.internet.password(16));
     page.campoSenhaConfirmacao.click();
 
     expect(page.obterErroCampoSenha()).toContain('A senha deve possuir entre 6 e 15 caracteres');
@@ -89,7 +93,7 @@ describe('Testes do formulário de cadastro', () => {
   it('Deve validar se a confirmação da senha tem pelo menos 6 caracteres', () => {
     page.iniciarNavegacao();
 
-    page.campoSenhaConfirmacao.sendKeys('12345');
+    page.campoSenhaConfirmacao.sendKeys(faker.internet.password(5));
     page.campoSenha.click();
 
     expect(page.obterErroCampoSenhaConfirmacao()).toContain('A senha deve possuir entre 6 e 15 caracteres');
@@ -99,7 +103,7 @@ describe('Testes do formulário de cadastro', () => {
   it('Deve validar se a confirmação da senha tem no máximo 15 caracteres', () => {
     page.iniciarNavegacao();
 
-    page.campoSenhaConfirmacao.sendKeys(''.padEnd(16, 'A'));
+    page.campoSenhaConfirmacao.sendKeys(faker.internet.password(16));
     page.campoSenha.click();
 
     expect(page.obterErroCampoSenhaConfirmacao()).toContain('A senha deve possuir entre 6 e 15 caracteres');
@@ -109,8 +113,8 @@ describe('Testes do formulário de cadastro', () => {
   it('Deve validar se as senhas forem diferentes', () => {
     page.iniciarNavegacao();
 
-    page.campoSenha.sendKeys('Teste123');
-    page.campoSenhaConfirmacao.sendKeys('Teste122');
+    page.campoSenha.sendKeys(faker.internet.password(8));
+    page.campoSenhaConfirmacao.sendKeys(faker.internet.password(9));
     page.campoSenha.click();
 
     expect(page.obterErroCampoSenhaConfirmacao()).toContain('As senhas não conferem');
