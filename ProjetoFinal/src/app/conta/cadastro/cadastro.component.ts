@@ -99,6 +99,6 @@ export class CadastroComponent implements OnInit, AfterViewInit {
   }
 
   processarFalha(fail: any) {
-    this.errors = fail.error.errors;
+    this.errors = fail?.error?.errors;
   }
 }
