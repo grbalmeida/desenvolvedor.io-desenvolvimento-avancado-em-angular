@@ -45,4 +45,12 @@ export class AppCadastroPage extends AppBasePage {
   obterErroCampoSenhaConfirmacao() {
     return this.obterElementoXpath('/html/body/app-root/app-conta-root/app-cadastro/div/form/div[3]/div/span/p').getText();
   }
+
+  obterMensagemRetorno() {
+    return this.obterElementoXpath('/html/body/app-root/app-conta-root/app-cadastro/div/form/div[1]/h3').getText();
+  }
+
+  obterErrosServidor() {
+    return this.obterElementoXpath('/html/body/app-root/app-conta-root/app-cadastro/div/form/div[1]/ul').getText();
+  }
 }

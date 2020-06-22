@@ -1,10 +1,10 @@
-import { browser, logging } from 'protractor';
 import * as faker from 'faker';
 
 import { AppCadastroPage } from './app.cadastro.po';
 
 describe('Testes do formulário de cadastro', () => {
   let page: AppCadastroPage;
+  const mensagemRetorno = 'Opa! Alguma coisa não deu certo:';
 
   beforeEach(() => {
     page = new AppCadastroPage();
@@ -121,11 +121,79 @@ describe('Testes do formulário de cadastro', () => {
     expect(page.botaoRegistrar.getAttribute('disabled')).toEqual('true');
   });
 
-  afterEach(async () => {
-    // Assert that there are no errors emitted from the browser
-    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-    expect(logs).not.toContain(jasmine.objectContaining({
-      level: logging.Level.SEVERE,
-    } as logging.Entry));
+  it('Deve validar se a senha possui pelo menos um digíto', () => {
+    page.iniciarNavegacao();
+
+    page.campoEmail.sendKeys(faker.internet.email());
+    page.campoSenha.sendKeys('------');
+    page.campoSenhaConfirmacao.sendKeys('------');
+    page.botaoRegistrar.click();
+    page.esperar(3000);
+
+    expect(page.obterMensagemRetorno()).toContain(mensagemRetorno);
+    expect(page.obterErrosServidor()).toContain('Senhas devem conter ao menos um digito (\'0\'-\'9\').');
+  });
+
+  it('Deve validar se a senha possui pelo menos um caracter não alfanumérico', () => {
+    page.iniciarNavegacao();
+
+    page.campoEmail.sendKeys(faker.internet.email());
+    page.campoSenha.sendKeys('teste123');
+    page.campoSenhaConfirmacao.sendKeys('teste123');
+    page.botaoRegistrar.click();
+    page.esperar(3000);
+
+    expect(page.obterMensagemRetorno()).toContain(mensagemRetorno);
+    expect(page.obterErrosServidor()).toContain('Senhas devem conter ao menos um caracter não alfanumérico.');
+  });
+
+  it('Deve validar se a senha possui pelo menos um caracter em caixa baixa', () => {
+    page.iniciarNavegacao();
+
+    page.campoEmail.sendKeys(faker.internet.email());
+    page.campoSenha.sendKeys('TESTE123');
+    page.campoSenhaConfirmacao.sendKeys('TESTE123');
+    page.botaoRegistrar.click();
+    page.esperar(3000);
+
+    expect(page.obterMensagemRetorno()).toContain(mensagemRetorno);
+    expect(page.obterErrosServidor()).toContain('Senhas devem conter ao menos um caracter em caixa baixa (\'a\'-\'z\').');
+  });
+
+  it('Deve validar se a senha possui pelo menos um caracter em caixa alta', () => {
+    page.iniciarNavegacao();
+
+    page.campoEmail.sendKeys(faker.internet.email());
+    page.campoSenha.sendKeys('teste123');
+    page.campoSenhaConfirmacao.sendKeys('teste123');
+    page.botaoRegistrar.click();
+    page.esperar(3000);
+
+    expect(page.obterMensagemRetorno()).toContain(mensagemRetorno);
+    expect(page.obterErrosServidor()).toContain('Senhas devem conter ao menos um caracter em caixa alta (\'A\'-\'Z\').');
+  });
+
+  it('Deve validar se o e-mail já está sendo usado', () => {
+    page.iniciarNavegacao();
+
+    const email = faker.internet.email();
+    const senha = 'Teste@123';
+
+    page.campoEmail.sendKeys(email);
+    page.campoSenha.sendKeys(senha);
+    page.campoSenhaConfirmacao.sendKeys(senha);
+    page.botaoRegistrar.click();
+    page.esperar(3000);
+
+    page.iniciarNavegacao();
+
+    page.campoEmail.sendKeys(email);
+    page.campoSenha.sendKeys(senha);
+    page.campoSenhaConfirmacao.sendKeys(senha);
+    page.botaoRegistrar.click();
+    page.esperar(3000);
+
+    expect(page.obterMensagemRetorno()).toContain(mensagemRetorno);
+    expect(page.obterErrosServidor()).toContain(`Login '${email}' já está sendo utilizado.`);
   });
 });

@@ -15,7 +15,7 @@ export class ContaService extends BaseService {
 
   registrarUsuario(usuario: Usuario): Observable<Usuario> {
     const response = this.http
-      .post(this.UrlServiceV1 + 'nova-conta', usuario, this.ObterHeaderJson())
+      .post(this.UrlServiceV1 + 'account/new-account', usuario, this.ObterHeaderJson())
       .pipe(
         map(this.extractData),
         catchError(this.serviceError)
