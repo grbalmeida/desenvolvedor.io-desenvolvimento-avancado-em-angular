@@ -16,7 +16,8 @@ exports.config = {
     browserName: 'chrome'
   },
   suites: {
-    cadastro: './src/cadastro/app.cadastro.e2e-spec.ts'
+    cadastro: './src/cadastro/app.cadastro.e2e-spec.ts',
+    login: './src/login/app.login.e2e-spec.ts'
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
