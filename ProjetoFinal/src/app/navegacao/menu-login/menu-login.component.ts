@@ -23,8 +23,6 @@ export class MenuLoginComponent {
       this.email = this.user.email;
     }
 
-    console.log({token: this.token});
-
     return this.token !== null;
   }
 

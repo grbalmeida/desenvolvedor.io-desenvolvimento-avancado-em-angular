@@ -6,6 +6,10 @@ export abstract class AppBasePage {
     browser.driver.manage().window().maximize();
   }
 
+  toastContainer = element(by.id('toast-container'));
+  saudacaoUsuario = element(by.id('saudacaoUsuario'));
+  botaoSair = element(by.xpath('/html/body/app-root/app-menu/header/nav/div/div/app-menu-login/ul/li[2]/a'));
+
   navegarParaHome() {
     return browser.get(browser.baseUrl) as Promise<any>;
   }

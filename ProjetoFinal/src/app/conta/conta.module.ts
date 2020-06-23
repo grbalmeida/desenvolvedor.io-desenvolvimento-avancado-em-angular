@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { ContaRoutingModule } from './conta.route';
 import { ContaAppComponent } from './conta.app.component';
 import { ContaService } from './services/conta.service';
+import { ContaGuard } from './services/conta.guard';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ContaService } from './services/conta.service';
     CustomFormsModule
   ],
   providers: [
-    ContaService
+    ContaService,
+    ContaGuard
   ]
 })
 export class ContaModule { }

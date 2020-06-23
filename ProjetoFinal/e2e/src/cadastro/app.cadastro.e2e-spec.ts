@@ -1,6 +1,7 @@
 import * as faker from 'faker';
 
 import { AppCadastroPage } from './app.cadastro.po';
+import { browser } from 'protractor';
 
 describe('Testes do formulário de cadastro', () => {
   let page: AppCadastroPage;
@@ -132,6 +133,7 @@ describe('Testes do formulário de cadastro', () => {
 
     expect(page.obterMensagemRetorno()).toContain(mensagemRetorno);
     expect(page.obterErrosServidor()).toContain('Senhas devem conter ao menos um digito (\'0\'-\'9\').');
+    expect(page.toastContainer.getText()).toContain('Ocorreu um erro!');
   });
 
   it('Deve validar se a senha possui pelo menos um caracter não alfanumérico', () => {
@@ -145,6 +147,7 @@ describe('Testes do formulário de cadastro', () => {
 
     expect(page.obterMensagemRetorno()).toContain(mensagemRetorno);
     expect(page.obterErrosServidor()).toContain('Senhas devem conter ao menos um caracter não alfanumérico.');
+    expect(page.toastContainer.getText()).toContain('Ocorreu um erro!');
   });
 
   it('Deve validar se a senha possui pelo menos um caracter em caixa baixa', () => {
@@ -158,6 +161,7 @@ describe('Testes do formulário de cadastro', () => {
 
     expect(page.obterMensagemRetorno()).toContain(mensagemRetorno);
     expect(page.obterErrosServidor()).toContain('Senhas devem conter ao menos um caracter em caixa baixa (\'a\'-\'z\').');
+    expect(page.toastContainer.getText()).toContain('Ocorreu um erro!');
   });
 
   it('Deve validar se a senha possui pelo menos um caracter em caixa alta', () => {
@@ -171,6 +175,27 @@ describe('Testes do formulário de cadastro', () => {
 
     expect(page.obterMensagemRetorno()).toContain(mensagemRetorno);
     expect(page.obterErrosServidor()).toContain('Senhas devem conter ao menos um caracter em caixa alta (\'A\'-\'Z\').');
+    expect(page.toastContainer.getText()).toContain('Ocorreu um erro!');
+  });
+
+  it('Deve cadastrar um usuário com sucesso', () => {
+    page.iniciarNavegacao();
+
+    const email = faker.internet.email();
+    const senha = 'Teste@123';
+
+    page.campoEmail.sendKeys(email);
+    page.campoSenha.sendKeys(senha);
+    page.campoSenhaConfirmacao.sendKeys(senha);
+    page.botaoRegistrar.click();
+    page.esperar(3000);
+
+    expect(page.saudacaoUsuario.getText()).toContain(email);
+    page.toastContainer.click();
+    page.esperar();
+
+    page.botaoSair.click();
+    page.esperar();
   });
 
   it('Deve validar se o e-mail já está sendo usado', () => {
@@ -185,6 +210,12 @@ describe('Testes do formulário de cadastro', () => {
     page.botaoRegistrar.click();
     page.esperar(3000);
 
+    expect(page.saudacaoUsuario.getText()).toContain(email);
+
+    page.toastContainer.click();
+    page.esperar();
+    page.botaoSair.click();
+    page.esperar();
     page.iniciarNavegacao();
 
     page.campoEmail.sendKeys(email);
@@ -195,5 +226,29 @@ describe('Testes do formulário de cadastro', () => {
 
     expect(page.obterMensagemRetorno()).toContain(mensagemRetorno);
     expect(page.obterErrosServidor()).toContain(`Login '${email}' já está sendo utilizado.`);
+    expect(page.toastContainer.getText()).toContain('Ocorreu um erro!');
+  });
+
+  it('Deve navegar para home se estiver logado e tentar acessar o cadastro ou o login', () => {
+    page.iniciarNavegacao();
+
+    const email = faker.internet.email();
+    const senha = 'Teste@123';
+
+    page.campoEmail.sendKeys(email);
+    page.campoSenha.sendKeys(senha);
+    page.campoSenhaConfirmacao.sendKeys(senha);
+    page.botaoRegistrar.click();
+    page.esperar(3000);
+
+    expect(page.saudacaoUsuario.getText()).toContain(email);
+
+    browser.get(`${browser.baseUrl}conta/cadastro`);
+    expect(browser.getCurrentUrl()).toEqual(`${browser.baseUrl}home`);
+
+    browser.get(`${browser.baseUrl}conta/login`);
+    expect(browser.getCurrentUrl()).toEqual(`${browser.baseUrl}home`);
+
+    page.botaoSair.click();
   });
 });

@@ -117,7 +117,7 @@
     ora "4.0.3"
     rxjs "6.5.4"
 
-"@angular/animations@~9.1.1":
+"@angular/animations@^9.1.11":
   version "9.1.11"
   resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-9.1.11.tgz#2c7b6e584df0ba0884d05f01fa7ab86c1fdd1c5e"
   integrity sha512-VKAExUnEJfo1PDQKagpx2pn+QMZCsPLRiADzTdl4U0VPylK3ALbn4ZNY9UbdwyE2plitz++LkH7sEGGfh+PNrQ==
@@ -5685,6 +5685,13 @@ ngx-custom-validators@^9.1.0:
     rxjs "~6.5.4"
     tslib "^1.10.0"
     zone.js "~0.10.2"
+
+ngx-toastr@^12.1.0:
+  version "12.1.0"
+  resolved "https://registry.yarnpkg.com/ngx-toastr/-/ngx-toastr-12.1.0.tgz#50f6eee4262f4ba342918f06f98a657f223194cf"
+  integrity sha512-rytCRBhvuudj614Kfj9GoIVQDrFuLvHSMP1YrMwTmR1SNkNJZOpGKmaSDCCBrNDkSrGouzMWBlFbl1UDBBsiqw==
+  dependencies:
+    tslib "^1.10.0"
 
 nice-try@^1.0.4:
   version "1.0.5"
