@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { NgBrazil } from 'ng-brazil';
+import { TextMaskModule } from 'angular2-text-mask';
+
 import { NovoComponent } from './novo/novo.component';
 import { FornecedorRoutingModule } from './fornecedor.route';
 import { FornecedorAppComponent } from './fornecedor.app.component';
@@ -28,6 +31,8 @@ import { DetalhesComponent } from './detalhes/detalhes.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgBrazil,
+    TextMaskModule
   ],
   providers: [
     FornecedorService

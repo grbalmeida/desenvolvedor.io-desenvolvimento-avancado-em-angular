@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 
 import { Observable, fromEvent, merge } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { NgBrazilValidators } from 'ng-brazil';
+import { utilsBr } from 'js-brasil';
 
 import { ValidationMessages, GenericValidator, DisplayMessage } from 'src/app/utils/generic-form-validation';
 import { Fornecedor } from '../models/fornecedor';
@@ -25,6 +27,7 @@ export class NovoComponent implements OnInit, AfterViewInit {
   genericValidator: GenericValidator;
   displayMessage: DisplayMessage = {};
 
+  MASKS = utilsBr.MASKS;
   formResult = '';
 
   mudancasNaoSalvas: boolean;
@@ -37,28 +40,29 @@ export class NovoComponent implements OnInit, AfterViewInit {
   ) {
 
     this.validationMessages = {
-      nome: {
+      name: {
         required: 'Informe o Nome',
       },
-      documento: {
+      document: {
         required: 'Informe o Documento',
+        cpf: 'CPF em formato inválido'
       },
-      logradouro: {
+      street: {
         required: 'Informe o Logradouro',
       },
-      numero: {
+      number: {
         required: 'Informe o Número',
       },
-      bairro: {
+      district: {
         required: 'Informe o Bairro',
       },
-      cep: {
+      postalCode: {
         required: 'Informe o CEP'
       },
-      cidade: {
+      city: {
         required: 'Informe a Cidade',
       },
-      estado: {
+      state: {
         required: 'Informe o Estado',
       }
     };
@@ -69,11 +73,22 @@ export class NovoComponent implements OnInit, AfterViewInit {
   ngOnInit() {
 
     this.fornecedorForm = this.fb.group({
-      nome: ['', [Validators.required]],
-      documento: ['', [Validators.required]],
-      ativo: ['', [Validators.required]],
-      tipoFornecedor: ['', [Validators.required]]
+      name: ['', [Validators.required]],
+      document: ['', [Validators.required, NgBrazilValidators.cpf]],
+      active: ['', [Validators.required]],
+      supplierType: ['', [Validators.required]],
+      address: this.fb.group({
+        street: ['', [Validators.required]],
+        number: ['', [Validators.required]],
+        complement: [''],
+        district: ['', [Validators.required]],
+        postalCode: ['', [Validators.required]],
+        city: ['', [Validators.required]],
+        state: ['', [Validators.required]]
+      })
     });
+
+    this.fornecedorForm.patchValue({ supplierType: '1', active: true });
   }
 
   ngAfterViewInit(): void {
