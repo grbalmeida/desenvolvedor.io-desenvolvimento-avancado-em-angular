@@ -1,4 +1,8 @@
 <div class="container main-container">
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="pacman" [fullScreen]="true">
+    <p style="color: white"> Processando... </p>
+  </ngx-spinner>
+
     <h1>Editar Fornecedor</h1>
     <hr>
     <form novalidate="novalidate" (ngSubmit)="editarFornecedor()" [formGroup]="fornecedorForm">

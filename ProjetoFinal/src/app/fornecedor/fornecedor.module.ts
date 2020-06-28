@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { NovoComponent } from './novo/novo.component';
 import { FornecedorRoutingModule } from './fornecedor.route';
@@ -33,7 +34,8 @@ import { FornecedorResolve } from './services/fornecedor.resolve';
     ReactiveFormsModule,
     HttpClientModule,
     NgBrazil,
-    TextMaskModule
+    TextMaskModule,
+    NgxSpinnerModule
   ],
   providers: [
     FornecedorService,
