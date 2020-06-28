@@ -19,9 +19,9 @@
                 <div>
                     <label class="control-label">Nome</label>
                     <div>
-                        <input class="form-control" id="nome" type="text" placeholder="Nome (requerido)" formControlName="nome" [ngClass]="{'is-invalid': displayMessage.nome }" />
-                        <span class="text-danger" *ngIf="displayMessage.nome">
-                            <p [innerHTML]="displayMessage.nome"></p>
+                        <input class="form-control" id="nome" type="text" placeholder="Nome (requerido)" formControlName="name" [ngClass]="{'is-invalid': displayMessage.name }" />
+                        <span class="text-danger" *ngIf="displayMessage.name">
+                            <p [innerHTML]="displayMessage.name"></p>
                         </span>
                     </div>
                 </div>
@@ -29,10 +29,18 @@
                 <div class="form-group">
                     <label class="control-label">Documento</label>
                     <div>
-                        <input class="form-control" id="documento" type="text" placeholder="requerido" [ngClass]="{'is-invalid': displayMessage.documento }" />
+                      <input
+                        class="form-control"
+                        id="documento"
+                        type="text"
+                        placeholder="{{ textoDocumento }}"
+                        formControlName="document"
+                        [textMask]="tipoFornecedorForm.value === '1' ? {mask: MASKS.cpf.textMask} : {mask: MASKS.cnpj.textMask}"
+                        [ngClass]="{'is-invalid': displayMessage.document }"
+                      />
 
-                        <span class="text-danger" *ngIf="displayMessage.documento">
-                            <p [innerHTML]="displayMessage.documento"></p>
+                        <span class="text-danger" *ngIf="displayMessage.document">
+                            <p [innerHTML]="displayMessage.document"></p>
                         </span>
                     </div>
                 </div>
@@ -42,15 +50,15 @@
             <div class="form-group col-md-6">
                 <div>
                     <label class="control-label" for="TipoFornecedor">Tipo</label><br>
-                    <input type="radio" value="1" id="tipoFornecedor" formControlName="tipoFornecedor" name="tipoFornecedor"> Pessoa Física<br>
-                    <input type="radio" value="2" id="tipoFornecedor" formControlName="tipoFornecedor" name="tipoFornecedor"> Pessoa Jurídica
+                    <input type="radio" value="1" id="tipoFornecedor" formControlName="supplierType" name="supplierType"> Pessoa Física<br>
+                    <input type="radio" value="2" id="tipoFornecedor" formControlName="supplierType" name="supplierType"> Pessoa Jurídica
                 </div>
                 <div>
                     &nbsp;
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" id="ativo" formControlName="ativo" name="ativo" value="true"> Ativo?
+                        <input class="form-check-input" type="checkbox" id="ativo" formControlName="active" name="active" value="true"> Ativo?
                     </label>
                 </div>
             </div>

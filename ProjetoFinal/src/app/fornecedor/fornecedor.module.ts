@@ -15,6 +15,7 @@ import { FornecedorService } from './services/fornecedor.service';
 import { EditarComponent } from './editar/editar.component';
 import { ExcluirComponent } from './excluir/excluir.component';
 import { DetalhesComponent } from './detalhes/detalhes.component';
+import { FornecedorResolve } from './services/fornecedor.resolve';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { DetalhesComponent } from './detalhes/detalhes.component';
     TextMaskModule
   ],
   providers: [
-    FornecedorService
+    FornecedorService,
+    FornecedorResolve
   ]
 })
 export class FornecedorModule { }

@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Observable, fromEvent, merge } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { NgBrazilValidators } from 'ng-brazil';
+import { utilsBr } from 'js-brasil';
 
 import { ValidationMessages, GenericValidator, DisplayMessage } from 'src/app/utils/generic-form-validation';
 import { Fornecedor } from '../models/fornecedor';
@@ -36,6 +38,8 @@ export class EditarComponent implements OnInit, AfterViewInit {
 
   mudancasNaoSalvas: boolean;
 
+  MASKS = utilsBr.MASKS;
+
   constructor(
     private fb: FormBuilder,
     private fornecedorService: FornecedorService,
@@ -45,71 +49,124 @@ export class EditarComponent implements OnInit, AfterViewInit {
   ) {
 
     this.validationMessages = {
-      nome: {
+      name: {
         required: 'Informe o Nome',
       },
-      documento: {
-        required: 'Informe o Documento'
+      document: {
+        required: 'Informe o Documento',
+        cpf: 'CPF em formato inválido',
+        cnpj: 'CNPJ em formato inválido'
       },
-      logradouro: {
+      street: {
         required: 'Informe o Logradouro',
       },
-      numero: {
+      number: {
         required: 'Informe o Número',
       },
-      bairro: {
+      district: {
         required: 'Informe o Bairro',
       },
-      cep: {
-        required: 'Informe o CEP'
+      postalCode: {
+        required: 'Informe o CEP',
+        cep: 'CEP em formato inválido'
       },
-      cidade: {
+      city: {
         required: 'Informe a Cidade',
       },
-      estado: {
+      state: {
         required: 'Informe o Estado',
       }
     };
 
     this.genericValidator = new GenericValidator(this.validationMessages);
 
-    this.route.params.subscribe(params => {
-      this.fornecedorService.obterPorId(params.id)
-        .subscribe(fornecedor => this.fornecedor = fornecedor);
-    });
+    this.fornecedor = this.route.snapshot.data.fornecedor;
+    this.tipoFornecedor = this.fornecedor.supplierType;
   }
 
   ngOnInit() {
 
     this.fornecedorForm = this.fb.group({
       id: '',
-      nome: ['', [Validators.required]],
-      documento: '',
-      ativo: ['', [Validators.required]],
-      tipoFornecedor: ['', [Validators.required]]
+      name: ['', [Validators.required]],
+      document: '',
+      active: ['', [Validators.required]],
+      supplierType: ['', [Validators.required]]
     });
+
+    this.preencherForm();
 
     this.enderecoForm = this.fb.group({
       id: '',
-      logradouro: ['', [Validators.required]],
-      numero: ['', [Validators.required]],
-      complemento: [''],
-      bairro: ['', [Validators.required]],
-      cep: ['', [Validators.required]],
-      cidade: ['', [Validators.required]],
-      estado: ['', [Validators.required]],
-      fornecedorId: ''
+      street: ['', [Validators.required]],
+      number: ['', [Validators.required]],
+      complement: [''],
+      district: ['', [Validators.required]],
+      postalCode: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      state: ['', [Validators.required]],
+      supplierId: ''
     });
   }
 
+  preencherForm() {
+    this.fornecedorForm.patchValue({
+      id: this.fornecedor.id,
+      name: this.fornecedor.name,
+      active: this.fornecedor.active,
+      supplierType: this.fornecedor.supplierType.toString(),
+      document: this.fornecedor.document
+    });
+
+    if (this.tipoFornecedorForm.value === '1') {
+      this.documento.setValidators([Validators.required, NgBrazilValidators.cpf]);
+    } else {
+      this.documento.setValidators([Validators.required, NgBrazilValidators.cnpj]);
+    }
+  }
+
   ngAfterViewInit() {
+    this.tipoFornecedorForm.valueChanges.subscribe(() => {
+      this.trocarValidacaoDocumento();
+      this.configurarElementosValidacao();
+      this.validarFormulario();
+    });
+
+    this.configurarElementosValidacao();
+  }
+
+  configurarElementosValidacao() {
     const controlBlurs: Observable<any>[] = this.formInputElements
       .map((formControl: ElementRef) => fromEvent(formControl.nativeElement, 'blur'));
 
     merge(...controlBlurs).subscribe(() => {
-      this.displayMessage = this.genericValidator.processarMensagens(this.fornecedorForm);
-      this.mudancasNaoSalvas = true;
+      this.validarFormulario();
     });
+  }
+
+  validarFormulario() {
+    this.displayMessage = this.genericValidator.processarMensagens(this.fornecedorForm);
+    this.mudancasNaoSalvas = true;
+  }
+
+  trocarValidacaoDocumento() {
+    this.documento.clearValidators();
+
+    if (this.tipoFornecedorForm.value === '1') {
+      this.documento.setValidators([Validators.required, NgBrazilValidators.cpf]);
+      this.textoDocumento = 'CPF (requerido)';
+    } else {
+      this.documento.setValidators([Validators.required, NgBrazilValidators.cnpj]);
+      this.textoDocumento = 'CNPJ (requerido)';
+    }
+  }
+
+  get tipoFornecedorForm(): AbstractControl {
+    return this.fornecedorForm.get('supplierType');
+  }
+
+  get documento(): AbstractControl {
+    return this.fornecedorForm.get('document');
   }
 
   editarFornecedor() {
