@@ -31,10 +31,9 @@
                           class="form-control"
                           id="documento"
                           type="text"
-                          placeholder="(requerido)"
+                          placeholder="{{ textoDocumento }}"
                           formControlName="document"
-                          cpf
-                          [textMask]="{mask: MASKS.cpf.textMask}"
+                          [textMask]="tipoFornecedorForm.value === '1' ? {mask: MASKS.cpf.textMask} : {mask: MASKS.cnpj.textMask}"
                           [ngClass]="{'is-invalid': displayMessage.document }"
                         />
 
@@ -62,7 +61,16 @@
                     <div class="form-group">
                         <label class="control-label">CEP</label>
                         <div>
-                            <input class="form-control" id="cep" type="text" placeholder="CEP (requerido)" formControlName="postalCode" [ngClass]="{ 'is-invalid': displayMessage.postalCode }" />
+                            <input
+                              class="form-control"
+                              id="cep"
+                              type="text"
+                              placeholder="CEP (requerido)"
+                              formControlName="postalCode"
+                              cep
+                              [textMask]="{mask: MASKS.cep.textMask}"
+                              [ngClass]="{ 'is-invalid': displayMessage.postalCode }"
+                            />
                             <span class="text-danger" *ngIf="displayMessage.postalCode">
                             <p [innerHTML]="displayMessage.postalCode"></p>
                         </span>
