@@ -66,6 +66,7 @@
                               id="cep"
                               type="text"
                               placeholder="CEP (requerido)"
+                              (blur)="buscarCep($event.target.value)"
                               formControlName="postalCode"
                               cep
                               [textMask]="{mask: MASKS.cep.textMask}"
