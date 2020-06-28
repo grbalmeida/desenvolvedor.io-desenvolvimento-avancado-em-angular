@@ -6,18 +6,13 @@ import { catchError, map } from 'rxjs/operators';
 
 import { BaseService } from 'src/app/services/base.service';
 import { Fornecedor } from '../models/fornecedor';
-import { CepConsulta } from '../models/endereco';
+import { CepConsulta, Endereco } from '../models/endereco';
 
 @Injectable()
 export class FornecedorService extends BaseService {
-  fornecedor: Fornecedor = new Fornecedor();
 
   constructor(private http: HttpClient) {
     super();
-    this.fornecedor.name = 'Teste Fake';
-    this.fornecedor.document = '32165498754';
-    this.fornecedor.active = true;
-    this.fornecedor.supplierType = 1;
   }
 
   obterTodos(): Observable<Fornecedor[]> {
@@ -36,7 +31,7 @@ export class FornecedorService extends BaseService {
 
   novoFornecedor(fornecedor: Fornecedor): Observable<Fornecedor> {
     return this.http
-      .post(this.UrlServiceV1 + 'suppliers', fornecedor, this.ObterAuthHeaderJson())
+      .post(this.UrlServiceV1 + 'suppliers', fornecedor, super.ObterAuthHeaderJson())
       .pipe(
         map(super.extractData),
         catchError(super.serviceError)
@@ -44,11 +39,25 @@ export class FornecedorService extends BaseService {
   }
 
   atualizarFornecedor(fornecedor: Fornecedor): Observable<Fornecedor> {
-    return new Observable<Fornecedor>();
+    return this.http
+      .put(this.UrlServiceV1 + 'suppliers/' + fornecedor.id, fornecedor, super.ObterAuthHeaderJson())
+      .pipe(
+        map(super.extractData),
+        catchError(super.serviceError)
+      );
   }
 
   excluirFornecedor(id: string): Observable<Fornecedor> {
     return new Observable<Fornecedor>();
+  }
+
+  atualizarEndereco(endereco: Endereco): Observable<Endereco> {
+    return this.http
+      .put(this.UrlServiceV1 + 'suppliers/update-address/' + endereco.id, endereco, super.ObterAuthHeaderJson())
+      .pipe(
+        map(super.extractData),
+        catchError(super.serviceError)
+      );
   }
 
   consultarCep(cep: string): Observable<CepConsulta> {
