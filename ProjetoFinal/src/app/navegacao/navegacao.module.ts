@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MenuLoginComponent } from './menu-login/menu-login.component';
+import { AcessoNegadoComponent } from './acesso-negado/acesso-negado.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MenuLoginComponent } from './menu-login/menu-login.component';
     MenuLoginComponent,
     HomeComponent,
     FooterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AcessoNegadoComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { MenuLoginComponent } from './menu-login/menu-login.component';
     MenuLoginComponent,
     HomeComponent,
     FooterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AcessoNegadoComponent
   ]
 })
 export class NavegacaoModule { }

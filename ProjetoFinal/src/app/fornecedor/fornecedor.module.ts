@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgBrazil } from 'ng-brazil';
@@ -32,7 +31,6 @@ import { FornecedorResolve } from './services/fornecedor.resolve';
     FornecedorRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
     NgBrazil,
     TextMaskModule,
     NgxSpinnerModule
