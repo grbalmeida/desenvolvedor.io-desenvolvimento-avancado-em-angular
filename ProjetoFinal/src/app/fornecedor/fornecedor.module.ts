@@ -16,6 +16,7 @@ import { EditarComponent } from './editar/editar.component';
 import { ExcluirComponent } from './excluir/excluir.component';
 import { DetalhesComponent } from './detalhes/detalhes.component';
 import { FornecedorResolve } from './services/fornecedor.resolve';
+import { FornecedorGuard } from './services/fornecedor.guard';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FornecedorResolve } from './services/fornecedor.resolve';
   ],
   providers: [
     FornecedorService,
-    FornecedorResolve
+    FornecedorResolve,
+    FornecedorGuard
   ]
 })
 export class FornecedorModule { }
