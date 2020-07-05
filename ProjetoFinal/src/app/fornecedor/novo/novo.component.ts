@@ -178,14 +178,14 @@ export class NovoComponent implements OnInit, AfterViewInit {
           sucesso => { this.processarSucesso(sucesso); },
           falha => { this.processarFalha(falha); }
         );
-
-      this.mudancasNaoSalvas = false;
     }
   }
 
   processarSucesso(response: any) {
     this.fornecedorForm.reset();
     this.errors = [];
+
+    this.mudancasNaoSalvas = false;
 
     const toast = this.toastr.success('Fornecedor cadastrado com sucesso!', 'Sucesso!');
     if (toast) {
