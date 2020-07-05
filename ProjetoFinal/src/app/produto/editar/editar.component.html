@@ -1,0 +1,82 @@
+<div class="container main-container">
+
+    <h3>Editar Produto - {{ produto.name }}</h3>
+
+    <hr>
+    <div class="row">
+        <div class="col-md-10">
+            <form enctype="multipart/form-data" (ngSubmit)="editarProduto()" [formGroup]="produtoForm">
+
+                <div class="alert alert-danger" *ngIf="errors.length > 0">
+                    <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
+                    <ul>
+                        <li *ngFor="let error of errors">{{ error }}</li>
+                    </ul>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Fornecedor</label>
+                    <select class="form-control" id="fornecedorId" formControlName="supplierId" [ngClass]="{'is-invalid': displayMessage.supplierId }">
+                        <option *ngFor="let fornecedor of fornecedores" value="{{ fornecedor.id }}">{{ fornecedor.name }}</option>
+                    </select>
+                    <span class="text-danger" *ngIf="displayMessage.supplierId">
+                        <p [innerHTML]="displayMessage.supplierId"></p>
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Nome</label>
+                    <div>
+                        <input class="form-control" id="nome" type="text" placeholder="Nome (requerido)" formControlName="name" [ngClass]="{'is-invalid': displayMessage.name }" />
+                        <span class="text-danger" *ngIf="displayMessage.name">
+                            <p [innerHTML]="displayMessage.name"></p>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Descrição</label>
+                    <div>
+                        <textarea cols="40" rows="5" maxlength="1000" class="form-control" id="descricao" placeholder="Descrição (requerido)" formControlName="description" [ngClass]="{'is-invalid': displayMessage.description }"></textarea>
+                        <span class="text-danger" *ngIf="displayMessage.description">
+                            <p [innerHTML]="displayMessage.description"></p>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Imagem do Produto</label>
+
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="imagem" formControlName="image" [ngClass]="{'is-invalid': displayMessage.image }">
+                        <label data-browse="Procurar" style="width: 400px" class="custom-file-label"></label>
+                        <span class="text-danger" *ngIf="displayMessage.image">
+                            <p [innerHTML]="displayMessage.image"></p>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Valor</label>
+                    <div>
+                        <input class="form-control" id="valor" type="text" placeholder="Valor (requerido)" formControlName="price" [textMask]="{mask: MASKS.number.textMask}" [ngClass]="{'is-invalid': displayMessage.price }" />
+                        <span class="text-danger" *ngIf="displayMessage.price">
+                            <p [innerHTML]="displayMessage.price"></p>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" id="ativo" formControlName="active" name="ativo" value="true"> Ativo?
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" [disabled]="!produtoForm.valid" value="Editar" class="btn btn-primary">&nbsp;
+                    <a class="btn btn-info" href="/produtos/listar-todos">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
