@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { ProdutoRoutingModule } from './produto.route';
 import { ProdutoAppComponent } from './produto.app.component';
@@ -33,7 +34,8 @@ import { ProdutoGuard } from './services/produto.guard';
     TextMaskModule,
     NgxSpinnerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ImageCropperModule
   ],
   providers: [
     ProdutoService,

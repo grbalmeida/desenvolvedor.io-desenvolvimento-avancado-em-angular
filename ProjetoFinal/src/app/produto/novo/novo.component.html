@@ -48,12 +48,46 @@
                     <label class="control-label">Imagem do Produto</label>
 
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="imagem" formControlName="image" [ngClass]="{'is-invalid': displayMessage.image }">
-                        <label data-browse="Procurar" style="width: 400px" class="custom-file-label"></label>
+                      <input
+                        type="file"
+                        class="custom-file-input"
+                        id="imagem"
+                        formControlName="image"
+                        (change)="fileChangeEvent($event)"
+                        [ngClass]="{'is-invalid': displayMessage.image }"
+                      >
+                      <label data-browse="Procurar" style="width: 400px" class="custom-file-label"></label>
 
-                        <span class="text-danger" *ngIf="displayMessage.image">
-                            <p [innerHTML]="displayMessage.image"></p>
-                        </span>
+                      <span class="text-danger" *ngIf="displayMessage.image">
+                          <p [innerHTML]="displayMessage.image"></p>
+                      </span>
+                    </div>
+
+                    <div>
+                      <div class="col col-md-6">
+                        <image-cropper
+                          [imageChangedEvent]="imageChangedEvent"
+                          [maintainAspectRatio]="false"
+                          [containWithinAspectRatio]="containWithinAspectRatio"
+                          [aspectRatio]="4 / 3"
+                          [resizeToWidth]="256"
+                          [cropperMinWidth]="128"
+                          [onlyScaleDown]="true"
+                          [roundCropper]="false"
+                          [canvasRotation]="canvasRotation"
+                          [transform]="transform"
+                          [alignImage]="'left'"
+                          [style.display]="showCropper ? null : 'none'"
+                          format="png"
+                          (imageCropped)="imageCropped($event)"
+                          (imageLoaded)="imageLoaded()"
+                          (cropperReady)="cropperReady($event)"
+                          (loadImageFailed)="loadImageFailed()"
+                        ></image-cropper>
+                      </div>
+                      <div class="col col-md-6">
+                        <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'" />
+                      </div>
                     </div>
                 </div>
 
