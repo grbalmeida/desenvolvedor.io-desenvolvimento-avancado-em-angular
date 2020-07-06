@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChildren } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, FormControlName } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControlName } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Observable, merge, fromEvent } from 'rxjs';
 import { CustomValidators } from 'ngx-custom-validators';
@@ -8,7 +9,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Usuario } from '../models/usuario';
 import { ContaService } from '../services/conta.service';
 import { ValidationMessages, GenericValidator, DisplayMessage } from 'src/app/utils/generic-form-validation';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -26,10 +26,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
   genericValidator: GenericValidator;
   displayMessage: DisplayMessage = {};
 
+  returnUrl: string;
+
   constructor(
     private fb: FormBuilder,
     private contaService: ContaService,
     private router: Router,
+    private route: ActivatedRoute,
     private toastr: ToastrService
   ) {
     this.validationMessages = {
@@ -43,6 +46,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       }
     };
 
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl;
     this.genericValidator = new GenericValidator(this.validationMessages);
   }
 
@@ -84,7 +88,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
     if (toast) {
       toast.onHidden.subscribe(() => {
-        this.router.navigate(['/home']);
+        this.returnUrl
+          ? this.router.navigate([this.returnUrl])
+          : this.router.navigate(['/home']);
       });
     }
   }
