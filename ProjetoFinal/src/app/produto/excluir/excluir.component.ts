@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProdutoService } from '../services/produto.service';
 
 import { ToastrService } from 'ngx-toastr';
 
-import { Produto } from '../models/produto';
 import { environment } from 'src/environments/environment';
+import { ProdutoService } from '../services/produto.service';
+import { Produto } from '../models/produto';
 
 @Component({
   selector: 'app-excluir',
   templateUrl: './excluir.component.html'
 })
 export class ExcluirComponent  {
+
+  imagens: string = environment.imagensUrl;
 
   produto: Produto;
 

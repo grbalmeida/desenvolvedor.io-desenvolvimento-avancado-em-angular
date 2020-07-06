@@ -7,8 +7,8 @@ import { Observable, fromEvent, merge } from 'rxjs';
 import { utilsBr } from 'js-brasil';
 import { ToastrService } from 'ngx-toastr';
 
+import { environment } from 'src/environments/environment';
 import { ValidationMessages, GenericValidator, DisplayMessage } from 'src/app/utils/generic-form-validation';
-
 import { Produto, Fornecedor } from '../models/produto';
 import { ProdutoService } from '../services/produto.service';
 
@@ -17,6 +17,8 @@ import { ProdutoService } from '../services/produto.service';
   templateUrl: './editar.component.html'
 })
 export class EditarComponent implements OnInit, AfterViewInit {
+
+  imagens: string = environment.imagensUrl;
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
