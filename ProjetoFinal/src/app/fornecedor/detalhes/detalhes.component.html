@@ -30,6 +30,8 @@
         </div>
     </div>
 
+    <app-lista-produto [produtos]="fornecedor.products"></app-lista-produto>
+
     <div>
         <a class="btn btn-dark" [routerLink]="['/fornecedores/editar', fornecedor.id]">Editar</a>&nbsp;
         <a class="btn btn-info" [routerLink]="['/fornecedores/listar-todos']">Voltar</a>

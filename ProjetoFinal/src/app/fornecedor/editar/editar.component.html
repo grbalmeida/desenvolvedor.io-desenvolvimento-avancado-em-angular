@@ -145,6 +145,8 @@
         </div>
     </form>
 
+    <app-lista-produto [produtos]="fornecedor.products"></app-lista-produto>
+
     <ng-template #content let-c="close" let-d="dismiss">
       <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">Atualizar Endereço</h4>
