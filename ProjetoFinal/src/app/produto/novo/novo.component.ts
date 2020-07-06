@@ -8,9 +8,9 @@ import { ToastrService } from 'ngx-toastr';
 import { ImageCroppedEvent, ImageTransform, Dimensions } from 'ngx-image-cropper';
 
 import { ValidationMessages, GenericValidator, DisplayMessage } from 'src/app/utils/generic-form-validation';
-
 import { Produto, Fornecedor } from '../models/produto';
 import { ProdutoService } from '../services/produto.service';
+import { CurrencyUtils } from 'src/app/utils/currency-utils';
 
 
 @Component({
@@ -111,7 +111,10 @@ export class NovoComponent implements OnInit, AfterViewInit {
   adicionarProduto() {
     if (this.produtoForm.dirty && this.produtoForm.valid) {
       this.produto = Object.assign({}, this.produto, this.produtoForm.value);
-      this.formResult = JSON.stringify(this.produto);
+
+      this.produto.uploadImage = this.croppedImage.split(',')[1];
+      this.produto.image = this.imagemNome;
+      this.produto.price = CurrencyUtils.StringParaDecimal(this.produto.price.toString());
 
       this.produtoService.novoProduto(this.produto)
         .subscribe(
@@ -136,7 +139,7 @@ export class NovoComponent implements OnInit, AfterViewInit {
   }
 
   processarFalha(fail: any) {
-    this.errors = fail.error.errors;
+    this.errors = fail?.error?.errors || [];
     this.toastr.error('Ocorreu um erro!', 'Opa :(');
   }
 
