@@ -17,7 +17,8 @@ exports.config = {
   },
   suites: {
     cadastro: './src/cadastro/app.cadastro.e2e-spec.ts',
-    login: './src/login/app.login.e2e-spec.ts'
+    login: './src/login/app.login.e2e-spec.ts',
+    cadastroProduto: './src/cadastro-produto/app.cadastro-produto.e2e-spec.ts'
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',

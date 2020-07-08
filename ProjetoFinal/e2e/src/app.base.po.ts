@@ -10,6 +10,19 @@ export abstract class AppBasePage {
   saudacaoUsuario = element(by.id('saudacaoUsuario'));
   botaoSair = element(by.xpath('/html/body/app-root/app-menu/header/nav/div/div/app-menu-login/ul/li[2]/a'));
 
+  /* LOGIN */
+  email = element(by.id('email'));
+  senha = element(by.id('password'));
+
+  login(){
+    this.navegarPorLink('Entrar');
+    this.email.sendKeys('email_teste_integracao@gmail.com');
+    this.senha.sendKeys('Teste@123');
+
+    element(by.id('Login')).click();
+    this.esperar(6000);
+  }
+
   navegarParaHome() {
     return browser.get(browser.baseUrl) as Promise<any>;
   }
