@@ -1,23 +1,19 @@
 import { Component, OnInit, ViewChildren, ElementRef, AfterViewInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControlName } from '@angular/forms';
+import { FormBuilder, Validators, FormControlName } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Observable, fromEvent, merge } from 'rxjs';
-import { utilsBr } from 'js-brasil';
 import { ToastrService } from 'ngx-toastr';
 import { ImageCroppedEvent, ImageTransform, Dimensions } from 'ngx-image-cropper';
 
-import { ValidationMessages, GenericValidator, DisplayMessage } from 'src/app/utils/generic-form-validation';
-import { Produto, Fornecedor } from '../models/produto';
 import { ProdutoService } from '../services/produto.service';
 import { CurrencyUtils } from 'src/app/utils/currency-utils';
-
+import { ProdutoFormBaseComponent } from '../produto-form.base.component';
 
 @Component({
   selector: 'app-novo',
   templateUrl: './novo.component.html'
 })
-export class NovoComponent implements OnInit, AfterViewInit {
+export class NovoComponent extends ProdutoFormBaseComponent implements OnInit, AfterViewInit {
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
@@ -36,50 +32,13 @@ export class NovoComponent implements OnInit, AfterViewInit {
 
   /* Image Cropper */
 
-  produto: Produto;
-  fornecedores: Fornecedor[];
-  errors: any[] = [];
-  produtoForm: FormGroup;
-
-  validationMessages: ValidationMessages;
-  genericValidator: GenericValidator;
-  displayMessage: DisplayMessage = {};
-
-  MASKS = utilsBr.MASKS;
-  formResult = '';
-
-  mudancasNaoSalvas: boolean;
-
   constructor(
     private fb: FormBuilder,
     private produtoService: ProdutoService,
     private router: Router,
     private toastr: ToastrService
   ) {
-
-    this.validationMessages = {
-      supplierId: {
-        required: 'Escolha um fornecedor',
-      },
-      name: {
-        required: 'Informe o Nome',
-        minlength: 'Mínimo de 2 caracteres',
-        maxlength: 'Máximo de 200 caracteres'
-      },
-      description: {
-        required: 'Informe a Descrição',
-        minlength: 'Mínimo de 2 caracteres',
-        maxlength: 'Máximo de 1000 caracteres'
-      },
-      image: {
-        required: 'Informe a Imagem',
-      },
-      price: {
-        required: 'Informe o Valor',
-      }
-    };
-
-    this.genericValidator = new GenericValidator(this.validationMessages);
+    super();
   }
 
   ngOnInit(): void {
@@ -99,13 +58,7 @@ export class NovoComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const controlBlurs: Observable<any>[] = this.formInputElements
-      .map((formControl: ElementRef) => fromEvent(formControl.nativeElement, 'blur'));
-
-    merge(...controlBlurs).subscribe(() => {
-      this.displayMessage = this.genericValidator.processarMensagens(this.produtoForm);
-      this.mudancasNaoSalvas = true;
-    });
+    super.configurarValidacaoFormulario(this.formInputElements);
   }
 
   adicionarProduto() {
@@ -168,4 +121,3 @@ export class NovoComponent implements OnInit, AfterViewInit {
 
   /* Image Cropper */
 }
-
